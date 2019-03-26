@@ -44,6 +44,8 @@ figure1e <- function() {
             message(tum)
             breast<-FALSE
             if(tum%in%c("brca","metabric")){breast<-TRUE}
+            
+            expmat_brca<-rbind(expmat_brca_a,expmat_brca_b)
 
             expmat<-get(paste0("expmat_",tum))
             vipermat<-get(paste0("vipermat_",tum))
