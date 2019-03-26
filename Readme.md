@@ -15,5 +15,5 @@ figure1b()
 figure1d()
 figure1e()
 figure1g()
-figureS1()
+figures1()
 ```

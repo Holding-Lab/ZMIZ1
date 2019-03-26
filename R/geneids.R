@@ -7,8 +7,9 @@
 #' annotategene_function()
 annotategene<-function(x){
 
-    #org.Hs.eg.db biomaRt org.Mm.eg.db EnhancedVolcano
-    require(org.Hs.eg.db)
+    library(biomaRt)
+    library(org.Mm.eg.db)
+    library(org.Hs.eg.db)
 
     tab<-AnnotationDbi::select(org.Hs.eg.db, keys=x, columns=c("GENENAME"), keytype="ENTREZID")
     tab<-tab[!duplicated(tab[,"ENTREZID"]),]
@@ -26,6 +27,7 @@ annotategene<-function(x){
 #' sym2eg_function()
 
 sym2eg<-function(ids){
+    library(org.Hs.eg.db)
     list_symbol2eg <- as.character(org.Hs.egALIAS2EG[mappedkeys(org.Hs.egALIAS2EG)])
     ids <- as.character(ids)
     outlist <- list_symbol2eg[ids]
@@ -45,6 +47,7 @@ sym2eg<-function(ids){
 #' any2entrez_function()
 #'
 any2entrez<-function(x){
+    library(org.Hs.eg.db)
     tab<-AnnotationDbi::select(org.Hs.eg.db, keys=x, columns=c("ENTREZID"), keytype="ALIAS")
     symbols<-tab[,1]
     entrez<-tab[,2]
@@ -66,6 +69,7 @@ any2entrez<-function(x){
 #' ens2eg_function()
 
 ens2eg<-function(x){
+    library(org.Hs.eg.db)
     if(!exists("ens2egmap")){
         ens2egmap<<-as.list(org.Hs.egENSEMBL2EG)
     }
@@ -93,6 +97,7 @@ ens2eg<-function(x){
 
 ### eg2ens function
 eg2ens<-function(x){
+    library(org.Hs.eg.db)
     if(!exists("eg2ensmap")){
         eg2ensmap<<-as.list(org.Hs.egENSEMBL[mappedkeys(org.Hs.egENSEMBL)])
     }
@@ -120,6 +125,7 @@ eg2ens<-function(x){
 #' eg2sym_function()
 #'
 eg2sym<-function(x){
+    library(org.Hs.eg.db)
     if(!exists("eg2symmap")){
         eg2symmap<<-as.list( org.Hs.egSYMBOL[mappedkeys( org.Hs.egSYMBOL)])
     }
@@ -150,6 +156,7 @@ eg2sym<-function(x){
 #'
 #'
 eg2refseq<-function(x){
+    library(org.Hs.eg.db)
     if(!exists("ens2egmap")){
         eg2refseqmap<<-as.list(org.Hs.egREFSEQ)
     }
