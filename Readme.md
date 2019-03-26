@@ -1,6 +1,6 @@
 ## Quick Start
 
-Below is a quick example that will generate a the figures.
+Below is a quick example that will generate the figures.
 
 ```R
 # Install Package
