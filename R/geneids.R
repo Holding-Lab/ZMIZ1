@@ -3,6 +3,9 @@
 #' This function converts a EntrezID to a Gene name
 #' @keywords EntrezID Gene
 #' @export
+#' @import biomaRt
+#' @import org.Mm.eg.db
+#' @import org.Hs.eg.db
 #' @examples annotategene()
 #' annotategene_function()
 annotategene<-function(x){
@@ -23,6 +26,7 @@ annotategene<-function(x){
 #' This function converts a gene symbol to Entrez ID
 #' @keywords EntrezID Gene Symbol
 #' @export
+#' @import org.Hs.eg.db
 #' @examples sym2eg('TFF1')
 #' sym2eg_function()
 
@@ -43,6 +47,7 @@ sym2eg<-function(ids){
 #' This function converts a anyhting to Entrez ID
 #' @keywords EntrezID Gene
 #' @export
+#' @import org.Hs.eg.db
 #' @examples any2entrez('TFF1')
 #' any2entrez_function()
 #'
@@ -65,6 +70,7 @@ any2entrez<-function(x){
 #' This function converts a Ensemble ID to Entrez ID
 #' @keywords Ensemble Entrez Convert
 #' @export
+#' @import org.Hs.eg.db
 #' @examples ens2eg('ENSG00000160182')
 #' ens2eg_function()
 
@@ -92,6 +98,7 @@ ens2eg<-function(x){
 #' This function converts a Entrez ID to Ensemble ID
 #' @keywords Ensemble Entrez Convert
 #' @export
+#' @import org.Hs.eg.db
 #' @examples ens2eg('7031')
 #' ens2eg_function()
 
@@ -121,6 +128,7 @@ eg2ens<-function(x){
 #' This function converts a Entrez ID to Gene Symbol
 #' @keywords Gene Symbol Entrez Convert
 #' @export
+#' @import org.Hs.eg.db
 #' @examples eg2sym('7031')
 #' eg2sym_function()
 #'
@@ -151,6 +159,7 @@ eg2sym<-function(x){
 #' This function converts a Entrez ID to RefSeq
 #' @keywords Gene Symbol Entrez Convert
 #' @export
+#' @import org.Hs.eg.db
 #' @examples eg2refseq('7031')
 #' eg2refseq_function()
 #'

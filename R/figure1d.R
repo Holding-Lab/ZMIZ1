@@ -5,6 +5,7 @@
 #' @keywords luciferase siZMIZ1 ER estrogen
 #' @examples figure1d()
 #' @export
+#' @import ggpubr
 
 
 figure1d <- function() {

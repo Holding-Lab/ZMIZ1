@@ -4,6 +4,8 @@
 #'
 #' @keywords siZMIZ1 cell growth
 #' @examples figure1g()
+#' @import ggpubr
+#' @import data.table
 #' @export
 
 figure1g <- function() {

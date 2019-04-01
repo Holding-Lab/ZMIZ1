@@ -3,6 +3,7 @@
 #' This function allows you generate figure1b
 #' @keywords qPlexRIME ER estrogen
 #' @export
+#' @import EnhancedVolcano
 #' @examples figure1b()
 
 

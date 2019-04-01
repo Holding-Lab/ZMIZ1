@@ -5,6 +5,8 @@
 #' @keywords RNAseq ZMIZ1
 #'
 #' @export
+#' @import DESeq2
+#' @import vulcan
 #' @examples figures1()
 
 
