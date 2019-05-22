@@ -1,14 +1,14 @@
-#' Figure 1g
+#' Figure 2b
 #'
 #' This function allows you generate figure1g
 #'
 #' @keywords siZMIZ1 cell growth
-#' @examples figure1g()
+#' @examples figure2b()
 #' @import ggpubr
 #' @import data.table
 #' @export
 
-figure1g <- function() {
+figure2b <- function() {
 
     library(ggpubr)
     library(data.table)

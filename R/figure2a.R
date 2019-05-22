@@ -1,14 +1,14 @@
-#' Figure 1d
+#' Figure 2a
 #'
-#' This function allows you generate figure1d
+#' This function allows you generate figure2a
 #'
 #' @keywords luciferase siZMIZ1 ER estrogen
-#' @examples figure1d()
+#' @examples figure2a()
 #' @export
 #' @import ggpubr
 
 
-figure1d <- function() {
+figure2a <- function() {
 
     library(ggpubr)
 

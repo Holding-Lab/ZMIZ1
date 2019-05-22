@@ -1,13 +1,13 @@
-#' Figure 1e
+#' Figure 3a
 #
 #' This function allows you generate figure1e
 #'
 #' @keywords VIPER ER ZMIZ1
-#' @examples figure1e()
+#' @examples figure3a()
 #' @export
 
 
-figure1e <- function() {
+figure3a <- function() {
 
     ZMIZ1<-any2entrez("ZMIZ1")
     ESR1<-any2entrez("ESR1")
@@ -44,7 +44,7 @@ figure1e <- function() {
             message(tum)
             breast<-FALSE
             if(tum%in%c("brca","metabric")){breast<-TRUE}
-            
+
             expmat_brca<-rbind(expmat_brca_a,expmat_brca_b)
 
             expmat<-get(paste0("expmat_",tum))

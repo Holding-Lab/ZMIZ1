@@ -12,8 +12,8 @@ install_github("andrewholding/ZMIZ1")
 library(ZMIZ1)
 
 figure1b()
-figure1d()
-figure1e()
-figure1g()
-figures1()
+figure2a()
+figure2b()
+figure3a()
+figureS1()
 ```
