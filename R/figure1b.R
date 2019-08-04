@@ -22,6 +22,7 @@ figure1b <- function() {
 
     EnhancedVolcano(df,
                     title = "MCF7, ER interactors +/- E2",
+                    subtitle = ""
                     lab = df$GeneSymbol,
                     selectLab = c("HSP90AA1","HSP90AB1","FKBP5","FOXA1","ZMIZ1","RARA","ESR1","PIAS3","SUMO1","SUMO2","SUMO3","GATA3","NCOA3","EP300","MED16","MED8","GRHL2","MED24","RXRA","MED15"),
                     x = 'log2FC',
@@ -31,7 +32,7 @@ figure1b <- function() {
                     FCcutoff=1,
                     transcriptPointSize = 1,
                     transcriptLabSize = 5.0,
-                    DrawConnectors = TRUE)
+                    drawConnectors = TRUE)
 
 
 
