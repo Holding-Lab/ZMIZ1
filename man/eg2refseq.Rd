@@ -7,13 +7,15 @@ This function converts a Entrez ID to RefSeq}
 \usage{
 eg2refseq(x)
 }
+\arguments{
+\item{x}{is vector of EntrezIDs}
+}
 \description{
 Entrez 2 RegSeq
 This function converts a Entrez ID to RefSeq
 }
 \examples{
 eg2refseq('7031')
-eg2refseq_function()
 
 
 }

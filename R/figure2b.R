@@ -5,13 +5,12 @@
 #' @keywords siZMIZ1 cell growth
 #' @examples figure2b()
 #' @import ggpubr
+#' @import ggplot2
 #' @import data.table
 #' @export
 
 figure2b <- function() {
 
-    library(ggpubr)
-    library(data.table)
 
     #//////////////////////////////////////////////////
     # MDA

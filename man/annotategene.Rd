@@ -7,13 +7,15 @@ This function converts a EntrezID to a Gene name}
 \usage{
 annotategene(x)
 }
+\arguments{
+\item{x}{is vector of EntrezIDs}
+}
 \description{
 annotate gene
 This function converts a EntrezID to a Gene name
 }
 \examples{
-annotategene()
-annotategene_function()
+annotategene(c('2099'))
 }
 \keyword{EntrezID}
 \keyword{Gene}

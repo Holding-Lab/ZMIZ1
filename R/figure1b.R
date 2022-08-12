@@ -4,12 +4,13 @@
 #' @keywords qPlexRIME ER estrogen
 #' @export
 #' @import EnhancedVolcano
+#' @importFrom utils read.table
 #' @examples figure1b()
 
 
 figure1b <- function() {
 
-    library(EnhancedVolcano)
+
 
     qplexrimeData<-system.file("extdata", "MCF7_qPLEX-RIME.txt", package = "ZMIZ1")
 

@@ -6,11 +6,10 @@
 #' @examples figure2a()
 #' @export
 #' @import ggpubr
+#' @importFrom utils read.table read.csv
 
 
 figure2a <- function() {
-
-    library(ggpubr)
 
     luciferaseData<-system.file("extdata",
                                 "luciferase.csv",

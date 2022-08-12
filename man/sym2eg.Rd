@@ -7,13 +7,15 @@ This function converts a gene symbol to Entrez ID}
 \usage{
 sym2eg(ids)
 }
+\arguments{
+\item{ids}{is vector of EntrezIDs}
+}
 \description{
 Symbol 2 Entrez
 This function converts a gene symbol to Entrez ID
 }
 \examples{
 sym2eg('TFF1')
-sym2eg_function()
 }
 \keyword{EntrezID}
 \keyword{Gene}

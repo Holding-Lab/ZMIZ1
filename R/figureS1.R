@@ -7,13 +7,12 @@
 #' @export
 #' @import DESeq2
 #' @import vulcan
+#' @importFrom graphics barplot
+#' @importFrom stats relevel
 #' @examples figures1()
 
 
 figures1 <- function() {
-    require(DESeq2)
-    require(vulcan)
-
 
     result_list <- list()
 
@@ -92,21 +91,21 @@ figures1 <- function() {
     williams <- msigdb[["c2_cgp;_;WILLIAMS_ESR1_TARGETS_UP"]]
     geneList <- result_list[["MCF7_6h"]]$log2FoldChange
     names(geneList) <- rownames(result_list[["MCF7_6h"]])
-    obj <- gsea(sort(geneList, dec = TRUE),
+    obj <- gsea(sort(geneList, decreasing = TRUE),
                 set = williams,
                 method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
               title = "Williams ESR1 Targets")
 
     stein <- msigdb[["c2_cgp;_;STEIN_ESR1_TARGETS"]]
-    obj <- gsea(sort(geneList, dec = TRUE),
+    obj <- gsea(sort(geneList, decreasing= TRUE),
                 set = stein,
                 method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
               title = "Stein ESR1 Targets")
 
     bhat <- msigdb[["c2_cgp;_;BHAT_ESR1_TARGETS_NOT_VIA_AKT1_UP"]]
-    obj <- gsea(sort(geneList, dec = TRUE),
+    obj <- gsea(sort(geneList, decreasing= TRUE),
                 set = bhat,
                 method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
@@ -116,7 +115,7 @@ figures1 <- function() {
     ##Cell Cycle
     #GO
     go_cc <- msigdb[["c5_bp;_;GO_CELL_CYCLE"]]
-    obj <- gsea(sort(geneList, dec = TRUE),
+    obj <- gsea(sort(geneList, decreasing= TRUE),
                 set = go_cc,
                 method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
@@ -125,7 +124,7 @@ figures1 <- function() {
     #Kegg
     kegg_cell_cycle <- msigdb[["c2_cp;_;KEGG_CELL_CYCLE"]]
     obj <-
-        gsea(sort(geneList, dec = TRUE),
+        gsea(sort(geneList, decreasing= TRUE),
              set = kegg_cell_cycle,
              method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
@@ -133,7 +132,7 @@ figures1 <- function() {
 
     #Reactome
     react_cc <- msigdb[["c2_cpreactome;_;REACTOME_CELL_CYCLE"]]
-    obj <- gsea(sort(geneList, dec = TRUE),
+    obj <- gsea(sort(geneList, decreasing= TRUE),
                 set = react_cc,
                 method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
@@ -142,7 +141,7 @@ figures1 <- function() {
     ##Overlap
     overlapped <- react_cc[react_cc %in% c(bhat, williams, stein)]
     obj <-
-        gsea(sort(geneList, dec = TRUE),
+        gsea(sort(geneList, decreasing= TRUE),
              set = overlapped,
              method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
@@ -158,15 +157,15 @@ figures1 <- function() {
 
             # Subset Cells and Time  # Keep only oestrogen (ethanol is control)
             subsamples <-
-                annotation$Sample[annotation$Cells == cells &
-                                      annotation$Treatment_Duration == time &
-                                      annotation$Treatment == "Oestrogen"]
+                annotationTable$Sample[annotationTable$Cells == cells &
+                                      annotationTable$Treatment_Duration == time &
+                                      annotationTable$Treatment == "Oestrogen"]
             subraw <- rawcounts[, subsamples]
             subannot <-
-                annotation[annotation$Sample %in% subsamples,
+                annotationTable[annotationTable$Sample %in% subsamples,
                            c("Cells", "Condition", "Treatment")]
             rownames(subannot) <-
-                annotation$Sample[annotation$Sample %in% subsamples]
+                annotationTable$Sample[annotationTable$Sample %in% subsamples]
             subannot <- subannot[subsamples, ]
 
             # DESeq2 analysis
@@ -212,7 +211,7 @@ figures1 <- function() {
     names(geneList) <- rownames(result_list[["T47D_6h"]])
     overlapped <- react_cc[react_cc %in% c(bhat, williams, stein)]
     obj <-
-        gsea(sort(geneList, dec = TRUE),
+        gsea(sort(geneList, decreasing= TRUE),
              set = overlapped,
              method = "pareto")
     plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",

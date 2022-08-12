@@ -3,17 +3,19 @@
 \name{any2entrez}
 \alias{any2entrez}
 \title{Any to Entrez
-This function converts a anyhting to Entrez ID}
+This function converts a anything to Entrez ID}
 \usage{
 any2entrez(x)
 }
+\arguments{
+\item{x}{is type of ID that could be converted to an EntrezID}
+}
 \description{
 Any to Entrez
-This function converts a anyhting to Entrez ID
+This function converts a anything to Entrez ID
 }
 \examples{
 any2entrez('TFF1')
-any2entrez_function()
 
 }
 \keyword{EntrezID}

@@ -7,13 +7,15 @@ This function converts a Entrez ID to Gene Symbol}
 \usage{
 eg2sym(x)
 }
+\arguments{
+\item{x}{is vector of EntrezIDs}
+}
 \description{
 Entrez 2 Symbol
 This function converts a Entrez ID to Gene Symbol
 }
 \examples{
 eg2sym('7031')
-eg2sym_function()
 
 }
 \keyword{Convert}

@@ -4,6 +4,8 @@
 #'
 #' @keywords VIPER ER ZMIZ1
 #' @examples figure3a()
+#' @importFrom stats setNames cor.test lm
+#' @importFrom graphics plot grid legend abline mtext
 #' @export
 
 

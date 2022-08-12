@@ -7,13 +7,15 @@ This function converts a Entrez ID to Ensemble ID}
 \usage{
 eg2ens(x)
 }
+\arguments{
+\item{x}{is vector of EntrezIDs}
+}
 \description{
 Entrez 2 Ensemble
 This function converts a Entrez ID to Ensemble ID
 }
 \examples{
 ens2eg('7031')
-ens2eg_function()
 }
 \keyword{Convert}
 \keyword{Ensemble}
