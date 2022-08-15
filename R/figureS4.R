@@ -1,7 +1,7 @@
-#' Figure S1
+#' Figure S4
 #'
-#' This function allows you generate figure s1. P-value will vary as seed is
-#' set.
+#' This function allows you generate figure s4. P-value will vary as seed is
+#' not set.
 #' @keywords RNAseq ZMIZ1
 #'
 #' @export
@@ -9,10 +9,10 @@
 #' @import vulcan
 #' @importFrom graphics barplot
 #' @importFrom stats relevel
-#' @examples figures1()
+#' @examples figureS4()
 
 
-figures1 <- function() {
+figureS4 <- function() {
 
     result_list <- list()
 

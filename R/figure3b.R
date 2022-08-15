@@ -1,15 +1,15 @@
-#' Figure 3a
+#' Figure 3b
 #
-#' This function allows you generate figure1e
+#' This function allows you generate figure3b
 #'
 #' @keywords VIPER ER ZMIZ1
-#' @examples figure3a()
+#' @examples figure3b()
 #' @importFrom stats setNames cor.test lm
 #' @importFrom graphics plot grid legend abline mtext
 #' @export
 
 
-figure3a <- function() {
+figure3b <- function() {
 
     ZMIZ1<-any2entrez("ZMIZ1")
     ESR1<-any2entrez("ESR1")

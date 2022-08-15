@@ -2,42 +2,58 @@
 #'
 #' This function allows you generate figure2a
 #'
-#' @keywords luciferase siZMIZ1 ER estrogen
+#' @keywords PLA Analysis
 #' @examples figure2a()
 #' @export
 #' @import ggpubr
+#' @import rstatix
+#'  @import dplyr
 #' @importFrom utils read.table read.csv
 
 
 figure2a <- function() {
 
-    luciferaseData<-system.file("extdata",
-                                "luciferase.csv",
-                                package = "ZMIZ1")
-    df_rep_cell<-read.csv(file=luciferaseData)
+        zmiz1PLAfilename<-system.file("extdata",
+                          "ZMIZ1plaData.csv",
+                          package = "ZMIZ1")
 
-    p <- ggboxplot(df_rep_cell,
-                   x="condition",
-                   y="activity",
-                   color="condition",
-                   add="jitter",
-                   outlier.shape=NA,
-                   shape="condition",
-                   palette =c("#00AFBB", "#E7B800", "#FC4E07","#5F7EF7"),
-                   ylab="Log(Relative Luciferase Activity)",
-                   xlab="Condition",
-                   legend="none",
-                   facet.by="cell"
-    )
-    p<-p + stat_compare_means(comparisons=list(c("siCTRL","siZMIZ1")),
-                              geom="label",
-                              method="t.test",
-                              paired=T,
-                              method.args=list(alternative="greater")
-    )
-    p
+        zmiz1PLA<-read.csv(zmiz1PLAfilename)
+        #If the Shapiro-Wilk Test p-value is greater than 0.05, the data is normal. If it is below 0.05, the data significantly
+        # deviate from a normal distribution therefore we use a there wilcox test.
+        shapiro.test(zmiz1PLA$Dots.Nuclea)
+
+        #repeating on individual data groups, givbes mixed results. Majority not normally distributed
+        shaprio.test<-  zmiz1PLA %>%
+            group_by(Cell.line, Target.2) %>%
+            shapiro_test(Dots.Nuclea)
+        shaprio.test
+
+        # Add p-values onto the box plots
+        stat.test <- zmiz1PLA %>%
+            group_by(Cell.line, Target.2) %>%
+            wilcox_test(Dots.Nuclea ~ Treatment, alternative = "t" ) %>%
+            adjust_pvalue(method = "bonferroni") %>%
+            add_significance("p.adj")
 
 
 
+
+        stat.test <- stat.test %>%
+            add_xy_position(fun = "mean_sd", x = "Cell.line")
+
+        p<-ggboxplot(zmiz1PLA, x = "Cell.line", y = "Dots.Nuclea",
+                     color = "Black", fill = "Treatment", palette =c("#00AFBB", "#E7B800", "#FC4E07"),
+                     facet.by="Target.2")
+
+        Q<- p +   stat_pvalue_manual(
+            stat.test, tip.length = 0.02,
+            step.increase = 0.05,
+            label = "{p.adj.signif}",
+            hide.ns = TRUE
+        ) +
+            xlab("Cell Line") +ylab("Dots/Nuclea") +
+            theme(axis.text.x = element_text(size=9),axis.text.y = element_text(size=9), axis.title.x=element_text(size=10),axis.title.y=element_text(size=10) )  +  theme(plot.margin = margin(0.25,0.25,0.25,0.25, "cm"))
+
+Q
 
 }

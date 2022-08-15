@@ -12,7 +12,5 @@ This function allows you generate figure2a
 \examples{
 figure2a()
 }
-\keyword{ER}
-\keyword{estrogen}
-\keyword{luciferase}
-\keyword{siZMIZ1}
+\keyword{Analysis}
+\keyword{PLA}

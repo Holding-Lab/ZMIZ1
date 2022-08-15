@@ -7,11 +7,12 @@
 figure2b()
 }
 \description{
-This function allows you generate figure1g
+This function allows you generate figure2b
 }
 \examples{
 figure2b()
 }
-\keyword{cell}
-\keyword{growth}
+\keyword{ER}
+\keyword{estrogen}
+\keyword{luciferase}
 \keyword{siZMIZ1}
