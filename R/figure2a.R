@@ -7,7 +7,7 @@
 #' @export
 #' @import ggpubr
 #' @import rstatix
-#'  @import dplyr
+#' @import dplyr
 #' @importFrom utils read.table read.csv
 
 
