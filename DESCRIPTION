@@ -1,14 +1,14 @@
 Package: ZMIZ1
 Type: Package
 Title: ZMZI1 Manuscript Figures
-Version: 0.1.2
+Version: 0.1.4
 Author: Andrew Holding
 Maintainer: Andrew N Holding <andrew.holding@york.ac.uk>
 Description: Manuscript Figures.
 License: GPL
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Depends: R (>= 2.10)
 Imports: DESeq2,
          AnnotationDbi,
@@ -22,5 +22,10 @@ Imports: DESeq2,
          vulcan,
          graphics,
          utils,
-         stats
-         
+         stats,
+	 dplyr,
+ 	 reshape,
+	 rstatix,
+	 survival,
+         survminer
+

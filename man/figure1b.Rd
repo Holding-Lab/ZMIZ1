@@ -7,7 +7,7 @@
 figure1b()
 }
 \description{
-This function allows you generate figure1b
+This function allows you generate figure1b - qPLEX-RIME results.
 }
 \examples{
 figure1b()

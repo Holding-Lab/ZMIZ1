@@ -5,7 +5,7 @@
 \alias{expmat_metabric}
 \title{METABRIC Breast Cancer Expression Matrix}
 \format{
-An object of class \code{matrix} with 24420 rows and 996 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 24420 rows and 996 columns.
 }
 \usage{
 expmat_metabric

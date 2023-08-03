@@ -48,18 +48,6 @@ figureS1 <- function() {
             rm(dea, resannot, res)
         }
     }
-    sig_genes <- matrix()
-    sig_genes[1] <- sum(result_list[["MCF7_3h"]]$padj < 0.05,
-                        na.rm = T)
-    sig_genes[2] <- sum(result_list[["MCF7_6h"]]$padj < 0.05,
-                        na.rm = T)
-    sig_genes[3] <- sum(result_list[["MCF7_12h"]]$padj < 0.05,
-                        na.rm = T)
-    sig_genes[4] <- sum(result_list[["MCF7_24h"]]$padj < 0.05,
-                        na.rm = T)
-    names(sig_genes) <- c("3h", "6h", "12h", "24h")
-    barplot(sig_genes, ylab = "Number of genes with signficantly different expresion",
-            xlab = "Time after addition of E2", main = "Gene expression in MCF7 +/-siZMIZ1")
 
 
     #ZMIZ1 is knocked down.
@@ -99,16 +87,6 @@ figureS1 <- function() {
     ZMIZ1expression<-ZMIZ1expression[ZMIZ1expression$Condition %in% c("siCTRL" , "siZMIZ1" ),]
     ZMIZ1expression<-cbind(ZMIZ1expression,"LogZMIZ1"=log(ZMIZ1expression$ZMIZ1 ))
 
-    p <- ggboxplot(ZMIZ1expression, x = "Time", y = "ZMIZ1",
-                   palette =c("#00AFBB", "#E7B800", "#FC4E07"),
-                   add = "jitter",facet.by="Condition")
-    p
-
-    #Not normal, negative binomial or log(negative binomial). Neither is good
-    #p   + stat_compare_means(comparisons = list(c("siCTRL",
-    #                                        "siZMIZ1")), geom = "label", method = "t.test", paired = T,
-    #                    method.args = list(alternative = "greater"))
-
 
     for (cells in c("MCF7")) {
         ESR1expression<-matrix(ncol=5,nrow=0)
@@ -133,12 +111,6 @@ figureS1 <- function() {
     ESR1expression<-ESR1expression[ESR1expression$Condition %in% c("siCTRL" , "siZMIZ1" ),]
     ESR1expression<-cbind(ESR1expression,"LogESR1"=log(ESR1expression$ESR1 ))
 
-    p <- ggboxplot(ESR1expression, x = "Time", y = "ESR1",
-                   palette =c("#00AFBB", "#E7B800", "#FC4E07"),
-                   add = "jitter",facet.by="Condition")
-    p
-
-
     colnames(ESR1expression)[4]<-"RawCounts"
     colnames(ZMIZ1expression)[4]<-"RawCounts"
     colnames(ESR1expression)[6]<-"LogCounts"
@@ -148,9 +120,12 @@ figureS1 <- function() {
 
     expression$Gene<-as.factor(expression$Gene)
 
-    p <- ggboxplot(expression, x = "Time", y = "RawCounts",
-                   palette =c("#00AFBB", "#E7B800", "#FC4E07"),
-                   facet.by="Condition",fill="Gene")
-    p
+    p <- ggboxplot(expression, x = "Time", y = "RawCounts", palette = c("#00AFBB",
+                                            "#E7B800", "#FC4E07"), outlier.shape=NA, facet.by = "Gene", fill = "Condition")
 
+    p <- p      + geom_point(aes(fill=factor(expression$Condition)),
+                             size=1,
+                             position = position_jitterdodge(dodge.width=0.8))   +ylab('Raw counts')
+
+    p
 }

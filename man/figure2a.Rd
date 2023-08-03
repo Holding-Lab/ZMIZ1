@@ -7,7 +7,7 @@
 figure2a()
 }
 \description{
-This function allows you generate figure2a
+This function allows you generate figure2a - PLA results.
 }
 \examples{
 figure2a()

@@ -5,7 +5,7 @@
 \alias{expmat_brca_b}
 \title{Second half of the TCGA Breast Cancer Expression Matrix}
 \format{
-An object of class \code{matrix} with 10266 rows and 1154 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 10266 rows and 1154 columns.
 }
 \usage{
 expmat_brca_b

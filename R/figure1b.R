@@ -1,6 +1,6 @@
 #' Figure 1b
 #'
-#' This function allows you generate figure1b
+#' This function allows you generate figure1b - qPLEX-RIME results.
 #' @keywords qPlexRIME ER estrogen
 #' @export
 #' @import EnhancedVolcano
@@ -32,8 +32,8 @@ figure1b <- function() {
                     ylim=c(0,6),
                     FCcutoff=1,
                     pCutoff = 0.05,
-                    transcriptPointSize = 1,
-                    transcriptLabSize = 5.0,
+                    pointSize = 1,
+                    labSize = 5.0,
                     drawConnectors = TRUE)
 
 

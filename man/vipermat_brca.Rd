@@ -5,7 +5,7 @@
 \alias{vipermat_brca}
 \title{VIPER Activity Matrix for TCGA BRCA patient samples.}
 \format{
-An object of class \code{matrix} with 4386 rows and 1037 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 4386 rows and 1037 columns.
 }
 \usage{
 vipermat_brca

@@ -1,15 +1,15 @@
-#' Figure 3b
+#' Figure 4c
 #
-#' This function allows you generate figure3b
+#' This function allows you generate figure4 - ER and ZMIZ1 activity
 #'
 #' @keywords VIPER ER ZMIZ1
-#' @examples figure3b()
+#' @examples figure4c()
 #' @importFrom stats setNames cor.test lm
 #' @importFrom graphics plot grid legend abline mtext
 #' @export
 
 
-figure3b <- function() {
+figure4c <- function() {
 
     ZMIZ1<-any2entrez("ZMIZ1")
     ESR1<-any2entrez("ESR1")

@@ -120,6 +120,18 @@
 #' msigdb
 "msigdb"
 
+#' MSigDB gene sets.
+#'
+#'.
+#' @docType data
+#' @usage proteinData
+#'
+#' @keywords datasets
+#'
+#' @examples
+#' proteinData
+"proteinData"
+
 ## Make global
 utils::globalVariables(c("annotationTable", "expmat_brca_a", "expmat_brca_b", "msigdb", "rawcounts"))
 

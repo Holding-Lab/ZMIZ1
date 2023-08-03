@@ -5,7 +5,7 @@
 \alias{vipermat_metabric}
 \title{VIPER Activity Matrix for METABRIC patient samples.}
 \format{
-An object of class \code{matrix} with 3375 rows and 996 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 3375 rows and 996 columns.
 }
 \usage{
 vipermat_metabric

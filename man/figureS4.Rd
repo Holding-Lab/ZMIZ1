@@ -7,11 +7,11 @@
 figureS4()
 }
 \description{
-This function allows you generate figure s4. P-value will vary as seed is
-not set.
+This function allows you generate figure s4 - E2 response of gene sets.
 }
 \examples{
 figureS4()
 }
+\keyword{GSEA}
 \keyword{RNAseq}
 \keyword{ZMIZ1}

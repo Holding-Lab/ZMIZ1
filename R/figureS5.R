@@ -1,14 +1,14 @@
-#' Figure S3_METABRIC
+#' Figure S5_METABRIC
 #'
-#' This function allows you generate figure s3_METABRIC.
+#' This function allows you generate figure S5_METABRIC.
 #'
 #' @keywords RNAseq ZMIZ1
-#' @examples figureS3_METABRIC()
+#' @examples figureS5_METABRIC()
 #' @import survival
 #' @import survminer
 #' @export
 
-figureS3_METABRIC <- function() {
+figureS5_METABRIC <- function() {
 
 
     filename<-system.file("extdata",
@@ -61,17 +61,17 @@ figureS3_METABRIC <- function() {
     return(p);
 }
 
-#' Figure S3_TCGA
+#' Figure S5_TCGA
 #'
-#' This function allows you generate figure s3_TCGA.
+#' This function allows you generate figure S5_TCGA.
 #'
 #' @keywords RNAseq ZMIZ1
-#' @examples figureS3_TCGA()
+#' @examples figureS5_TCGA()
 #' @import survival
 #' @import survminer
 #' @export
 
-figureS3_TCGA <- function() {
+figureS5_TCGA <- function() {
 
 
     filename<-system.file("extdata",

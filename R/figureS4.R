@@ -1,223 +1,110 @@
 #' Figure S4
 #'
-#' This function allows you generate figure s4. P-value will vary as seed is
-#' not set.
-#' @keywords RNAseq ZMIZ1
+#' This function allows you generate figure s4 - E2 response of gene sets.
 #'
-#' @export
+#' @keywords RNAseq ZMIZ1 GSEA
+#' @examples figureS4()
 #' @import DESeq2
 #' @import vulcan
-#' @importFrom graphics barplot
-#' @importFrom stats relevel
-#' @examples figureS4()
-
+#' @import EnhancedVolcano
+#' @export
 
 figureS4 <- function() {
 
+
     result_list <- list()
-
-
     for (cells in c("MCF7")) {
-        #unique(annotationTable$Cells)
-        for (time in unique(annotationTable$Treatment_Duration)) {
+        for (time in c("24h")) {
             resname <- paste0(cells, "_", time)
             message(resname)
-
-            # Subset Cells and Time  # Keep only oestrogen (ethanol is control)
-            subsamples <-
-                annotationTable$Sample[annotationTable$Cells == cells &
-                            annotationTable$Treatment_Duration == time &
-                               annotationTable$Treatment == "Oestrogen"]
+            subsamples <- annotationTable$Sample[annotationTable$Cells ==
+                                                     cells & annotationTable$Treatment_Duration ==
+                                                     time & annotationTable$Condition == "siCTRL"]
             subraw <- rawcounts[, subsamples]
-            subannot <-
-                annotationTable[annotationTable$Sample %in% subsamples,
-                                c("Cells", "Condition", "Treatment")]
-            rownames(subannot) <-
-                annotationTable$Sample[annotationTable$Sample %in% subsamples]
+            subannot <- annotationTable[annotationTable$Sample %in%
+                                            subsamples, c("Cells", "Condition", "Treatment")]
+            rownames(subannot) <- annotationTable$Sample[annotationTable$Sample %in%
+                                                             subsamples]
             subannot <- subannot[subsamples, ]
-
-            # DESeq2 analysis
-            dds <-
-                DESeqDataSetFromMatrix(
-                    countData = subraw,
-                    colData = subannot,
-                    design =  ~ Condition
-                )
+            dds <- DESeqDataSetFromMatrix(countData = subraw,
+                                          colData = subannot, design = ~Treatment)
             dds <- dds[rowSums(counts(dds)) > 1, ]
-            dds$Condition <- relevel(dds$Condition, ref = "siCTRL")
+            dds$Condition <- relevel(dds$Treatment, ref = "EtOH")
             dea <- DESeq(dds, parallel = TRUE)
-            res <-
-                results(dea, contrast = c("Condition", "siZMIZ1", "siCTRL"))
-
-            # Annotate results
+            res <- results(dea, contrast = c("Treatment", "Oestrogen",
+                                             "EtOH"))
             resannot <- cbind(rownames(res), eg2sym(rownames(res)))
             annotations <- annotategene(rownames(res))
-            resannot <-
-                cbind(as.matrix(resannot),
-                      as.matrix(annotations),
-                      as.matrix(res))
-            colnames(resannot)[1:3] <- c("ENTREZID", "SYMBOL", "NAME")
+            resannot <- cbind(as.matrix(resannot), as.matrix(annotations),
+                              as.matrix(res))
+            colnames(resannot)[1:3] <- c("ENTREZID", "SYMBOL",
+                                         "NAME")
             resannot <- as.data.frame(resannot)
-            resannot$log2FoldChange <-
-                as.numeric(as.character(resannot$log2FoldChange))
+            resannot$log2FoldChange <- as.numeric(as.character(resannot$log2FoldChange))
             resannot$stat <- as.numeric(as.character(resannot$stat))
-            resannot$pvalue <-
-                as.numeric(as.character(resannot$pvalue))
+            resannot$pvalue <- as.numeric(as.character(resannot$pvalue))
             resannot$padj <- as.numeric(as.character(resannot$padj))
             resannot <- resannot[order(resannot$pvalue), ]
-
             result_list[[resname]] <- resannot
             rm(dea, resannot, res)
         }
     }
-
-
-
-    ###Graph to find maxium effect.
-    sig_genes <- matrix()
-    sig_genes[1] <- sum(result_list[["MCF7_3h"]]$padj < 0.05, na.rm = T)
-    sig_genes[2] <- sum(result_list[["MCF7_6h"]]$padj < 0.05, na.rm = T)
-    sig_genes[3] <- sum(result_list[["MCF7_12h"]]$padj < 0.05, na.rm = T)
-    sig_genes[4] <- sum(result_list[["MCF7_24h"]]$padj < 0.05, na.rm = T)
-
-    names(sig_genes) <- c("3h", "6h", "12h", "24h")
-
-    barplot(sig_genes,
-            ylab = "Number of genes with signficantly different expresion",
-            xlab = "Time after addition of E2",
-            main = "Gene expression in MCF7 +/-siZMIZ1")
 
 
     williams <- msigdb[["c2_cgp;_;WILLIAMS_ESR1_TARGETS_UP"]]
-    geneList <- result_list[["MCF7_6h"]]$log2FoldChange
-    names(geneList) <- rownames(result_list[["MCF7_6h"]])
-    obj <- gsea(sort(geneList, decreasing = TRUE),
-                set = williams,
-                method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Williams ESR1 Targets")
-
     stein <- msigdb[["c2_cgp;_;STEIN_ESR1_TARGETS"]]
-    obj <- gsea(sort(geneList, decreasing= TRUE),
-                set = stein,
-                method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Stein ESR1 Targets")
-
     bhat <- msigdb[["c2_cgp;_;BHAT_ESR1_TARGETS_NOT_VIA_AKT1_UP"]]
-    obj <- gsea(sort(geneList, decreasing= TRUE),
-                set = bhat,
-                method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Bhat ESR1 Targets Up")
 
-
-    ##Cell Cycle
-    #GO
     go_cc <- msigdb[["c5_bp;_;GO_CELL_CYCLE"]]
-    obj <- gsea(sort(geneList, decreasing= TRUE),
-                set = go_cc,
-                method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "GO: Cell Cycle")
-
-    #Kegg
     kegg_cell_cycle <- msigdb[["c2_cp;_;KEGG_CELL_CYCLE"]]
-    obj <-
-        gsea(sort(geneList, decreasing= TRUE),
-             set = kegg_cell_cycle,
-             method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Kegg Cell Cycle")
-
-    #Reactome
     react_cc <- msigdb[["c2_cpreactome;_;REACTOME_CELL_CYCLE"]]
-    obj <- gsea(sort(geneList, decreasing= TRUE),
-                set = react_cc,
-                method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Reactome Cell Cycle")
-
-    ##Overlap
-    overlapped <- react_cc[react_cc %in% c(bhat, williams, stein)]
-    obj <-
-        gsea(sort(geneList, decreasing= TRUE),
-             set = overlapped,
-             method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Reactome Cell Cycle/ER Response overlap")
-
-
-    #Repead for T47D at just 6hours
-    for (cells in c("T47D")) {
-        #unique(annotation$Cells)
-        for (time in c('6h')) {
-            resname <- paste0(cells, "_", time)
-            message(resname)
-
-            # Subset Cells and Time  # Keep only oestrogen (ethanol is control)
-            subsamples <-
-                annotationTable$Sample[annotationTable$Cells == cells &
-                                      annotationTable$Treatment_Duration == time &
-                                      annotationTable$Treatment == "Oestrogen"]
-            subraw <- rawcounts[, subsamples]
-            subannot <-
-                annotationTable[annotationTable$Sample %in% subsamples,
-                           c("Cells", "Condition", "Treatment")]
-            rownames(subannot) <-
-                annotationTable$Sample[annotationTable$Sample %in% subsamples]
-            subannot <- subannot[subsamples, ]
-
-            # DESeq2 analysis
-            dds <-
-                DESeqDataSetFromMatrix(
-                    countData = subraw,
-                    colData = subannot,
-                    design =  ~ Condition
-                )
-            dds <- dds[rowSums(counts(dds)) > 1, ]
-            dds$Condition <- relevel(dds$Condition, ref = "siCTRL")
-            dea <- DESeq(dds, parallel = TRUE)
-
-            res <-
-                results(dea, contrast = c("Condition", "siZMIZ1", "siCTRL"))
-
-            # Annotate results
-            resannot <- cbind(rownames(res), eg2sym(rownames(res)))
-            annotations <- annotategene(rownames(res))
-            resannot <-
-                cbind(as.matrix(resannot),
-                      as.matrix(annotations),
-                      as.matrix(res))
-            colnames(resannot)[1:3] <- c("ENTREZID", "SYMBOL", "NAME")
-            resannot <- as.data.frame(resannot)
-            resannot$log2FoldChange <-
-                as.numeric(as.character(resannot$log2FoldChange))
-            resannot$stat <- as.numeric(as.character(resannot$stat))
-            resannot$pvalue <-
-                as.numeric(as.character(resannot$pvalue))
-            resannot$padj <- as.numeric(as.character(resannot$padj))
-            resannot <- resannot[order(resannot$pvalue), ]
-
-            result_list[[resname]] <- resannot
-            rm(dea, resannot, res)
-        }
-    }
-
-
-    ###Validate siZMIZ1/siCTRL are E2 genes at 6h in T47D
-
-    geneList <- result_list[["T47D_6h"]]$log2FoldChange
-    names(geneList) <- rownames(result_list[["T47D_6h"]])
-    overlapped <- react_cc[react_cc %in% c(bhat, williams, stein)]
-    obj <-
-        gsea(sort(geneList, decreasing= TRUE),
-             set = overlapped,
-             method = "pareto")
-    plot_gsea(obj, bottomYtitle = "siZMIZ/siCTRL at 6h",
-              title = "Reactome Cell Cycle/ER Response overlap")
 
 
 
+    overlapped_reactEG<-react_cc[react_cc %in% c(bhat, williams, stein)]
+    resMCF7reactEG<-result_list$MCF7_24h[overlapped_reactEG,]
+
+    overlapped_goEG<-go_cc[go_cc %in% c(bhat, williams, stein)]
+    resMCF7goEG<-result_list$MCF7_24h[overlapped_goEG,]
+
+    overlapped_keggEG<-kegg_cell_cycle[kegg_cell_cycle %in% c(bhat, williams, stein)]
+    resMCF7keggEG<-result_list$MCF7_24h[overlapped_keggEG,]
+
+
+
+
+    EnhancedVolcano(resMCF7reactEG,
+                    lab = resMCF7reactEG$SYMBOL,
+                    x = 'log2FoldChange',
+                    y = 'padj',
+                    title = 'Reactome / ER Cell Cycle Gene set',
+                    drawConnectors = TRUE,
+                    pCutoff = 0.05,
+                    subtitle = 'MCF7 cells, 24 hours Estrogen treatment vs EtOH control',
+                    selectLab = c('E2F2','FEN1','MCM2','MCM4','MCM6', 'PCNA', 'POLE2', 'MCM10', 'RFC4',
+                                  'SKP2','CCNA2','CCNE2', 'CDC20','CDC25A','CDC6'))
+
+
+    EnhancedVolcano(resMCF7goEG,
+                    lab = resMCF7goEG$SYMBOL,
+                    x = 'log2FoldChange',
+                    y = 'padj',
+                    pCutoff = 0.05,
+                    title = 'GO / ER Cell Cycle Gene set',
+                    subtitle = 'MCF7 cells, 24 hours Estrogen treatment vs EtOH control',
+                    drawConnectors = TRUE,
+                    selectLab = c('E2F2','FEN1','MCM2','MCM6', 'PCNA', 'POLE2', 'MCM10', 'RFC4',
+                                  'SKP2','RRM1', 'CCNA2','CCNE2', 'CDC20','CDC25A','CDC6', 'E2F6', 'CENPU'))
+
+
+    EnhancedVolcano(resMCF7keggEG,
+                    lab = resMCF7keggEG$SYMBOL,
+                    x = 'log2FoldChange',
+                    y = 'padj',
+                    pCutoff = 0.05,
+                    drawConnectors = TRUE,
+                    title = 'Kegg / ER Cell Cycle Gene set',
+                    subtitle = 'MCF7 cells, 24 hours Estrogen treatment vs EtOH control')
 
 }
+

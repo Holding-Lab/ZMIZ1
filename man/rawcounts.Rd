@@ -5,7 +5,7 @@
 \alias{rawcounts}
 \title{RNA-seq time course data}
 \format{
-An object of class \code{matrix} with 28395 rows and 286 columns.
+An object of class \code{matrix} (inherits from \code{array}) with 28395 rows and 286 columns.
 }
 \usage{
 rawcounts
