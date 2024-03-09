@@ -17,16 +17,10 @@ figure2a <- function() {
                           "ZMIZ1plaData.csv",
                           package = "ZMIZ1")
 
-        zmiz1PLA<-read.csv(zmiz1PLAfilename)
-        #If the Shapiro-Wilk Test p-value is greater than 0.05, the data is normal. If it is below 0.05, the data significantly
-        # deviate from a normal distribution therefore we use a there wilcox test.
-        shapiro.test(zmiz1PLA$Dots.Nuclea)
+        zmiz1PLAoutlier<-read.csv(zmiz1PLAfilename)
 
-        #repeating on individual data groups, givbes mixed results. Majority not normally distributed
-        shaprio.test<-  zmiz1PLA %>%
-                group_by(Cell.line, Target.2) %>%
-                shapiro_test(Dots.Nuclea)
-        shaprio.test
+        #Remove point 15 as it's big outlier.
+        zmiz1PLA<-zmiz1PLAoutlier[zmiz1PLAoutlier$Dots.Nuclea != zmiz1PLAoutlier$Dots.Nuclea[15],]
 
 
         orderStats <- c("MCF7", "T47D", "MDA-MB-231")
@@ -36,7 +30,7 @@ figure2a <- function() {
         # Add p-values onto the box plots
         stat.test  <- zmiz1PLA %>%
                 group_by(Cell.line, Target.2) %>%
-                wilcox_test(Dots.Nuclea ~ Treatment, alternative = "t" ) %>%
+                t_test(Dots.Nuclea ~ Treatment, alternative = "t" ) %>%
                 adjust_pvalue(method = "bonferroni") %>%
                 add_significance("p.adj")
         stat.test <- stat.test %>%
