@@ -1,15 +1,15 @@
-#' Figure S4
+#' Figure S12
 #'
-#' This function allows you generate figure s4 - E2 response of gene sets.
+#' This function allows you generate figure S12 - E2 response of gene sets.
 #'
 #' @keywords RNAseq ZMIZ1 GSEA
-#' @examples figureS4()
+#' @examples figureS12_E2_gene_set_volcano()
 #' @import DESeq2
 #' @import vulcan
 #' @import EnhancedVolcano
 #' @export
 
-figureS4 <- function() {
+figureS12_E2_gene_set_volcano <- function() {
 
 
     result_list <- list()

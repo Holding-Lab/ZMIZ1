@@ -3,11 +3,11 @@
 #' This function allows you generate figure3c - ZMIZ1 ChIP-qpcr at E2F2 promoter
 #'
 #' @keywords siZMIZ1 ChIP
-#' @examples figure3c()
+#' @examples figure3c_ChIPqPCR()
 #' @import ggpubr
 #' @export
 
-figure3c <- function() {
+figure3c_ChIPqPCR <- function() {
 
   df<-data.frame(ct=c(0,-0.4514596571154,0,-0.8532381171768,0,-1.1463684138967),
                  fc=c(1,1.36742305725018,	1,1.80655116741969,	1,2.21355989985898),

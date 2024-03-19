@@ -5,10 +5,10 @@
 #' @export
 #' @import EnhancedVolcano
 #' @importFrom utils read.table
-#' @examples figure1b()
+#' @examples figure1b_qPlexRIME()
 
 
-figure1b <- function() {
+figure1b_qPlexRIME <- function() {
 
 
 

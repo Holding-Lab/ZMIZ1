@@ -1,4 +1,4 @@
-#' Figure 4e
+#' Figure 5e
 #
 #' This function allows you generate figure4e - ZMIZ1 and KI67
 #'
@@ -9,7 +9,7 @@
 #' @export
 
 
-figure4e <- function() {
+figure5e_ki67 <- function() {
 
     proteinData
 

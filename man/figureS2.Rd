@@ -7,7 +7,7 @@
 figureS2()
 }
 \description{
-This function allows you generate figurS2 - PLA controls.
+This function allows you generate figureS2 - PLA controls.
 }
 \examples{
 figureS2()

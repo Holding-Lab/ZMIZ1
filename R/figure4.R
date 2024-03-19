@@ -1,15 +1,15 @@
-#' Figure 2d
+#' Figure 4
 #'
 #' This function allows you generate figure2d - siZMIZ1 cell growth
 #'
 #' @keywords siZMIZ1 cell growth
-#' @examples figuredc()
+#' @examples figure4_cellFrowth()
 #' @import ggpubr
 #' @import ggplot2
 #' @import data.table
 #' @export
 
-figure2c <- function() {
+figure4_cellGrowth <- function() {
 
 
     #//////////////////////////////////////////////////

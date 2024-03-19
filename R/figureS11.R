@@ -1,6 +1,6 @@
-#' Figure S7
+#' Figure S11
 #'
-#' This function allows you generate figure S7. GSEA results Part 1. P-value will vary as seed is
+#' This function allows you generate figure S11. GSEA results Part 1. P-value will vary as seed is
 #' not set.
 #' @keywords RNAseq ZMIZ1
 #'
@@ -9,10 +9,10 @@
 #' @import vulcan
 #' @importFrom graphics barplot
 #' @importFrom stats relevel
-#' @examples figureS4()
+#' @examples figureS11()
 
 
-figureS7 <- function() {
+figureS11 <- function() {
 
     result_list <- list()
 

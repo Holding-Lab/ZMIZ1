@@ -1,15 +1,15 @@
-#' Figure S1
+#' Figure S9
 #'
-#' This function allows you generate figure s1.
+#' This function allows you generate figure S9.
 #'
 #' @keywords RNAseq ZMIZ1
-#' @examples figureS1()
+#' @examples figureS9_siZMIZ1_ESR1_ZMIZ1_reads()
 #' @import DESeq2
 #' @import vulcan
 #' @import ggpubr
 #' @export
 
-figureS1 <- function() {
+figureS9_siZMIZ1_ESR1_ZMIZ1_reads <- function() {
 
     result_list <- list()
     for (cells in c("MCF7")) {

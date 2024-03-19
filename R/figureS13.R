@@ -1,6 +1,6 @@
-#' Figure S8mcf7
+#' Figure S13mcf7
 #'
-#' This function allows you generate figure S8. GSEA results Part 2. P-value will vary as seed is
+#' This function allows you generate figure S13. GSEA results Part 2. P-value will vary as seed is
 #' not set.
 #' @keywords RNAseq ZMIZ1
 #'
@@ -9,10 +9,10 @@
 #' @import vulcan
 #' @importFrom graphics barplot
 #' @importFrom stats relevel
-#' @examples figureS8mcf7()
+#' @examples figureS13mcf7()
 
 
-figureS8mcf7 <- function() {
+figureS13mcf7 <- function() {
 
 
 
@@ -88,9 +88,9 @@ figureS8mcf7 <- function() {
 
 }
 
-#' Figure S8t47d
+#' Figure S13t47d
 #'
-#' This function allows you generate figure S8. GSEA results Part 2. P-value will vary as seed is
+#' This function allows you generate figure S3. GSEA results Part 2. P-value will vary as seed is
 #' not set.
 #' @keywords RNAseq ZMIZ1
 #'
@@ -99,10 +99,10 @@ figureS8mcf7 <- function() {
 #' @import vulcan
 #' @importFrom graphics barplot
 #' @importFrom stats relevel
-#' @examples figureS8mcf7()
+#' @examples figureS13mcf7()
 
 
-figureS8t47d <- function() {
+figureS13t47d <- function() {
 
 
 

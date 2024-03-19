@@ -1,15 +1,15 @@
 #' Figure 2c
 #'
-#' This function allows you generate figure2c - luciferase activity assay
+#' This function allows you generate the old figure2c - luciferase activity assay
 #'
 #' @keywords luciferase siZMIZ1 ER estrogen
-#' @examples figure2b()
+#' @examples figure_removed_2c
 #' @export
 #' @import ggpubr
 #' @importFrom utils read.table read.csv
 
 
-figure2b <- function() {
+figure_removed_2c <- function() {
 
     luciferaseData<-system.file("extdata",
                                 "luciferase.csv",

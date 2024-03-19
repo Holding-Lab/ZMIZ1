@@ -1,4 +1,4 @@
-#' Figure 4c
+#' Figure 5c
 #
 #' This function allows you generate figure4 - ER and ZMIZ1 activity
 #'
@@ -9,7 +9,7 @@
 #' @export
 
 
-figure4c <- function() {
+figure5c_VIPER <- function() {
 
     ZMIZ1<-any2entrez("ZMIZ1")
     ESR1<-any2entrez("ESR1")

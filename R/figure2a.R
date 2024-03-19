@@ -3,7 +3,7 @@
 #' This function allows you generate figure2a - PLA results.
 #'
 #' @keywords PLA Analysis
-#' @examples figure2a()
+#' @examples figure2a_PLA()
 #' @export
 #' @import ggpubr
 #' @import rstatix
@@ -11,7 +11,7 @@
 #' @importFrom utils read.table read.csv
 
 
-figure2a <- function() {
+figure2a_PLA <- function() {
 
         zmiz1PLAfilename<-system.file("extdata",
                           "ZMIZ1plaData.csv",

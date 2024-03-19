@@ -1,13 +1,13 @@
-#' Figure S6
+#' Figure S15
 #'
-#' This function allows you generate figure S6 metabric - luminal vs basal ZMIZ1 expression
+#' This function allows you generate figure S15 metabric - luminal vs basal ZMIZ1 expression
 #'
 #' @keywords RNAseq ZMIZ1
-#' @examples figureS6_METABRIC()
+#' @examples figureS15_METABRIC()
 #' @import ggpubr
 #' @export
 
-figureS6_METABRIC <- function() {
+figureS15_METABRIC <- function() {
     ZMIZ1 <- any2entrez("ZMIZ1")
     ESR1 <- any2entrez("ESR1")
     tumAcros <- c("blca", "brca", "coad", "gbm", "hnsc", "kirc",
@@ -107,16 +107,16 @@ figureS6_METABRIC <- function() {
     return(plotfun('metabric'))
 }
 
-#' Figure S6 TCGA
+#' Figure S15 TCGA
 #'
-#' This function allows you generate figure S6 TCGA - luminal vs basal ZMIZ1 expression
+#' This function allows you generate figure S15 TCGA - luminal vs basal ZMIZ1 expression
 #'
 #' @keywords RNAseq ZMIZ1
-#' @examples figureS6_TCGA()
+#' @examples figureS15_TCGA()
 #' @import ggpubr
 #' @export
 
-figureS6_TCGA <- function() {
+figureS15_TCGA <- function() {
     ZMIZ1 <- any2entrez("ZMIZ1")
     ESR1 <- any2entrez("ESR1")
     tumAcros <- c("blca", "brca", "coad", "gbm", "hnsc", "kirc",

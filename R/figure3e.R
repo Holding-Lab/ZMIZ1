@@ -3,12 +3,12 @@
 #' This function allows you generate figure3e - E2F2 expression by timepoint
 #'
 #' @keywords siZMIZ1 E2F2 RNA timecourse
-#' @examples figure3e()
+#' @examples figure3e_E2F2Timecourse()
 #' @import DESeq2
 #' @import ggpubr
 #' @export
 
-figure3e <- function() {
+figure3e_E2F2Timecourse <- function() {
 
 
 result_list <- list()
