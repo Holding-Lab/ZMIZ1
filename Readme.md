@@ -21,10 +21,10 @@ figure5e_ki67()
 
 figureS2() #PLA Controls
 figureS9_siZMIZ1_ESR1_ZMIZ1_reads()
-figureS11()
+figureS11() #GSEA Part 1
 figureS12_E2_gene_set_volcano()
-figureS13mcf7()
-figureS13t47d()
+figureS13mcf7()  #GSEA Part 2a
+figureS13t47d()  #GSEA Part 2b
 figureS14_Survival_METABRIC()
 figureS14_Survival_TCGA()
 figureS15_METABRIC()
