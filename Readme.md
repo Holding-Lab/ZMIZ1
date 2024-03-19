@@ -18,6 +18,8 @@ figure3e_E2F2Timecourse()
 figure4_cellGrowth()
 figure5c_VIPER()
 figure5e_ki67()
+
+figureS2() #PLA Controls
 figureS9_siZMIZ1_ESR1_ZMIZ1_reads()
 figureS11()
 figureS12_E2_gene_set_volcano()
@@ -27,6 +29,5 @@ figureS14_Survival_METABRIC()
 figureS14_Survival_TCGA()
 figureS15_METABRIC()
 figureS15_TCGA()
-figureS2()
 
 ```
